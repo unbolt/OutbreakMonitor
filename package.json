@@ -1,0 +1,29 @@
+{
+  "name": "OutbreakMonitor",
+  "version": "1.0.0",
+  "description": "I don't want to get eaten by zombies.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unbolt/OutbreakMonitor.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/unbolt/OutbreakMonitor/issues"
+  },
+  "homepage": "https://github.com/unbolt/OutbreakMonitor#readme",
+  "dependencies": {
+    "express": "^4.13.4",
+    "googlemaps": "^1.4.0",
+    "moment": "^2.12.0",
+    "mongodb": "^2.1.7",
+    "mongoose": "^4.4.7",
+    "nconf": "^0.8.4",
+    "twitter": "^1.2.5"
+  }
+}

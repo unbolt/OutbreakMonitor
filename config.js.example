@@ -1,0 +1,16 @@
+var config = {}
+
+config.twitter = {};
+config.redis = {};
+config.mongo = {};
+
+config.twitter.consumer_key         = "";
+config.twitter.consumer_secret      = "";
+config.twitter.access_token_key     = "";
+config.twitter.access_token_secret  = "";
+
+config.twitter.track_words          = "";
+
+config.mongo.url                    = "mongodb://localhost:27017/outbreak";
+
+module.exports = config;
