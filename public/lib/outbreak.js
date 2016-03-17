@@ -7,7 +7,11 @@ function initMap() {
     
     $.getJSON( "/locations", function( data ) {
        $.each(data, function(i) {
-            results.push(new google.maps.LatLng(data[i].place.lat, data[i].place.lng));
+           console.log(data[i]);
+           if(data[i].place.lat && data[i].place.lng) {
+                results.push(new google.maps.LatLng(data[i].place.lat, data[i].place.lng));
+           }
+
         });
         
         map = new google.maps.Map(document.getElementById('map'), {

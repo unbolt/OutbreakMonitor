@@ -66,13 +66,15 @@ client.stream('statuses/filter', { track: config.twitter.track_words },  functio
             save_tweet.place.country_code = tweet.place.country_code;
             save_tweet.place.country = tweet.place.country;
             save_tweet.local_time = tweet.local_time;
+            save_tweet.local_timestamp = timestamp.toDate();
             
             // Check if we have this location saved yet or not
             Location.find({ id: tweet.place.id }, function(err, location) {
                 assert.equal(null, err);
                 
                 // Check if we have this location geocoded
-                if(location.lat == null) {
+                
+                if(!location.length) {
                     console.log('This is not a geocoded location.');
                     console.log('Location name: ' + tweet.place.full_name );
                     
@@ -103,8 +105,8 @@ client.stream('statuses/filter', { track: config.twitter.track_words },  functio
                     });
                 } else {
                     // This place exists in the database omg wtf
-                    save_tweet.place.lat = location.lat;
-                    save_tweet.place.lng = location.lng;
+                    save_tweet.place.lat = location[0].lat;
+                    save_tweet.place.lng = location[0].lng;
                     
                     save_tweet.save(function(err) {
                         assert.equal(null, err);
@@ -171,7 +173,15 @@ router.route('/locations')
 
     .get(function(req, res) {
     
-        Tweet.find(function(err, tweets) {
+        var pastDay = moment().subtract(1, 'days');
+    
+        Tweet.find({
+            createdAt: {
+                $gt: pastDay.toDate()
+            }
+        }, 
+        
+       function(err, tweets) {
             assert.equal(null, err);
             
             res.json(tweets);

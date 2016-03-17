@@ -15,6 +15,8 @@ var TweetSchema = new Schema({
         lng: String
     },
     local_time: String,
+    local_timestamp: Date,
+    createdAt: { type: Date, default: Date.now() }
 
 });
 
